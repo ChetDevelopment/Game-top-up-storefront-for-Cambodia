@@ -1,0 +1,496 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   NEXUS DESIGN SYSTEM v2.0
+   Complete Visual Overhaul
+   ============================================ */
+
+:root {
+  /* ─── COLOR PALETTE: Emerald + Rose + Slate ─── */
+  --nexus-primary: #10b981;
+  --nexus-primary-dark: #059669;
+  --nexus-primary-light: #34d399;
+  --nexus-secondary: #f43f5e;
+  --nexus-secondary-dark: #e11d48;
+  --nexus-accent: #06b6d4;
+  --nexus-accent-light: #22d3ee;
+  
+  /* Backgrounds */
+  --nexus-bg: #020617;
+  --nexus-bg-secondary: #0f172a;
+  --nexus-bg-tertiary: #1e293b;
+  --nexus-surface: #1e293b;
+  --nexus-surface-elevated: #334155;
+  
+  /* Text */
+  --nexus-text: #f8fafc;
+  --nexus-text-secondary: #94a3b8;
+  --nexus-text-muted: #64748b;
+  
+  /* UI Elements */
+  --nexus-border: #334155;
+  --nexus-border-light: #475569;
+  --nexus-ring: #10b981;
+  
+  /* Status Colors */
+  --nexus-success: #10b981;
+  --nexus-warning: #f59e0b;
+  --nexus-error: #ef4444;
+  --nexus-info: #06b6d4;
+
+  /* ─── TYPOGRAPHY ─── */
+  --font-heading: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-body: var(--font-plus-jakarta), system-ui, sans-serif;
+  --font-display: var(--font-cal-sans), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  /* ─── SPACING ─── */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* ─── BORDER RADIUS ─── */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ─── SHADOWS ─── */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  --shadow-glow-primary: 0 0 40px rgba(16, 185, 129, 0.3);
+  --shadow-glow-accent: 0 0 40px rgba(6, 182, 212, 0.3);
+
+  /* ─── TRANSITIONS ─── */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── RESET & BASE ─── */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  background: var(--nexus-bg);
+  color: var(--nexus-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── BACKGROUND GRADIENT MESH ─── */
+body {
+  background-image: 
+    radial-gradient(circle at 20% 10%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 30%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 40% 70%, rgba(244, 63, 94, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 90% 90%, rgba(16, 185, 129, 0.04) 0%, transparent 50%);
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* Subtle grid pattern overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+}
+
+/* ─── SELECTION ─── */
+::selection {
+  background: rgba(16, 185, 129, 0.4);
+  color: #fff;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--nexus-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--nexus-border-light);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--nexus-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--nexus-primary);
+}
+
+/* ─── FOCUS STATES ─── */
+*:focus-visible {
+  outline: 2px solid var(--nexus-ring);
+  outline-offset: 2px;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 3s linear infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+/* ─── COMPONENT STYLES ─── */
+@layer components {
+  /* Buttons */
+  .nexus-btn {
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden 
+           rounded-xl px-6 py-3 font-semibold transition-all duration-300 
+           active:scale-[0.98] focus:outline-none focus:ring-2 
+           focus:ring-offset-2 focus:ring-offset-[var(--nexus-bg)];
+  }
+
+  .nexus-btn-primary {
+    @apply nexus-btn text-white;
+    background: linear-gradient(135deg, var(--nexus-primary) 0%, var(--nexus-primary-dark) 100%);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(16, 185, 129, 0.3);
+  }
+
+  .nexus-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(16, 185, 129, 0.4);
+  }
+
+  .nexus-btn-secondary {
+    @apply nexus-btn text-white;
+    background: linear-gradient(135deg, var(--nexus-secondary) 0%, var(--nexus-secondary-dark) 100%);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(244, 63, 94, 0.3);
+  }
+
+  .nexus-btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(244, 63, 94, 0.4);
+  }
+
+  .nexus-btn-accent {
+    @apply nexus-btn text-white;
+    background: linear-gradient(135deg, var(--nexus-accent) 0%, var(--nexus-accent-light) 100%);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(6, 182, 212, 0.3);
+  }
+
+  .nexus-btn-accent:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(6, 182, 212, 0.4);
+  }
+
+  .nexus-btn-ghost {
+    @apply nexus-btn border backdrop-blur-xl;
+    background: rgba(30, 41, 59, 0.5);
+    border-color: var(--nexus-border);
+    color: var(--nexus-text);
+  }
+
+  .nexus-btn-ghost:hover {
+    background: rgba(51, 65, 85, 0.8);
+    border-color: var(--nexus-primary);
+    transform: translateY(-1px);
+  }
+
+  .nexus-btn-outline {
+    @apply nexus-btn border-2 bg-transparent;
+    border-color: var(--nexus-primary);
+    color: var(--nexus-primary);
+  }
+
+  .nexus-btn-outline:hover {
+    background: var(--nexus-primary);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  /* Cards */
+  .nexus-card {
+    @apply relative overflow-hidden rounded-2xl backdrop-blur-xl transition-all duration-300;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+    border: 1px solid var(--nexus-border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .nexus-card-hover {
+    @apply nexus-card;
+  }
+
+  .nexus-card-hover:hover {
+    border-color: var(--nexus-primary);
+    box-shadow: var(--shadow-xl), var(--shadow-glow-primary);
+    transform: translateY(-4px);
+  }
+
+  .nexus-card-glass {
+    @apply nexus-card;
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* Inputs */
+  .nexus-input {
+    @apply w-full rounded-xl px-4 py-3 transition-all duration-200 
+           bg-[var(--nexus-bg-secondary)] border focus:outline-none 
+           focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--nexus-bg)];
+    border-color: var(--nexus-border);
+    color: var(--nexus-text);
+  }
+
+  .nexus-input::placeholder {
+    color: var(--nexus-text-muted);
+  }
+
+  .nexus-input:focus {
+    border-color: var(--nexus-primary);
+    ring-color: var(--nexus-ring);
+  }
+
+  .nexus-label {
+    @apply block text-xs font-bold uppercase tracking-widest mb-2;
+    color: var(--nexus-text-secondary);
+  }
+
+  /* Badges */
+  .nexus-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] 
+           font-black uppercase tracking-widest;
+  }
+
+  .nexus-badge-success {
+    @apply nexus-badge;
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--nexus-success);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+
+  .nexus-badge-warning {
+    @apply nexus-badge;
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--nexus-warning);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  .nexus-badge-error {
+    @apply nexus-badge;
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--nexus-error);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+  }
+
+  .nexus-badge-info {
+    @apply nexus-badge;
+    background: rgba(6, 182, 212, 0.15);
+    color: var(--nexus-info);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+  }
+
+  .nexus-badge-hot {
+    @apply nexus-badge;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
+  }
+
+  .nexus-badge-new {
+    @apply nexus-badge;
+    background: linear-gradient(135deg, var(--nexus-primary) 0%, var(--nexus-accent) 100%);
+    color: white;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
+  }
+
+  /* Text Gradients */
+  .nexus-gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, var(--nexus-primary) 0%, var(--nexus-accent) 50%, var(--nexus-secondary) 100%);
+    background-size: 200% auto;
+    animation: shimmer 4s linear infinite;
+  }
+
+  .nexus-gradient-text-primary {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, var(--nexus-primary) 0%, var(--nexus-primary-light) 100%);
+  }
+
+  .nexus-gradient-text-accent {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, var(--nexus-accent) 0%, var(--nexus-accent-light) 100%);
+  }
+
+  /* Special Effects */
+  .nexus-glow {
+    position: relative;
+  }
+
+  .nexus-glow::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, var(--nexus-primary), var(--nexus-accent));
+    border-radius: inherit;
+    filter: blur(20px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .nexus-glow:hover::before {
+    opacity: 0.5;
+  }
+
+  .nexus-border-glow {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nexus-border-glow::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--nexus-primary), var(--nexus-accent), var(--nexus-secondary));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.5;
+    animation: border-flow 3s linear infinite;
+  }
+
+  @keyframes border-flow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Section Dividers */
+  .nexus-divider {
+    @apply h-[1px] w-full;
+    background: linear-gradient(90deg, transparent 0%, var(--nexus-border) 50%, transparent 100%);
+  }
+
+  /* Loading Skeleton */
+  .nexus-skeleton {
+    @apply rounded-lg;
+    background: linear-gradient(90deg, 
+      var(--nexus-bg-secondary) 0%, 
+      var(--nexus-surface) 50%, 
+      var(--nexus-bg-secondary) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+/* ─── UTILITY CLASSES ─── */
+.text-balance {
+  text-wrap: balance;
+}
+
+.pointer-events-auto {
+  pointer-events: auto;
+}
+
+.backdrop-blur-3xl {
+  backdrop-filter: blur(64px);
+}
+
+/* Font classes */
+.font-inter {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.font-cal-sans {
+  font-family: var(--font-cal-sans), system-ui, sans-serif;
+}
+
+.font-jetbrains-mono {
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+/* Gradient backgrounds */
+.bg-gradient-nexus {
+  background: linear-gradient(135deg, var(--nexus-primary) 0%, var(--nexus-accent) 50%, var(--nexus-secondary) 100%);
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(135deg, var(--nexus-primary) 0%, var(--nexus-primary-dark) 100%);
+}
+
+.bg-gradient-accent {
+  background: linear-gradient(135deg, var(--nexus-accent) 0%, var(--nexus-accent-light) 100%);
+}
+
+/* Mesh gradient */
+.mesh-gradient {
+  background: 
+    radial-gradient(circle at 20% 10%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 30%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 70%, rgba(244, 63, 94, 0.1) 0%, transparent 50%);
+}

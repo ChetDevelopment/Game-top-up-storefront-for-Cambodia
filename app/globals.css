@@ -1,0 +1,329 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme System - Base CSS Variables */
+:root {
+  /* Default theme values - will be overridden by dynamic theme */
+  --color-primary: #6366f1;
+  --color-secondary: #6b7280;
+  --color-background: #040408;
+  --color-background-secondary: #0a0a14;
+  --color-foreground: #f8fafc;
+  --color-foreground-secondary: #94a3b8;
+  --color-accent: #f59e0b;
+  --color-accent-foreground: #ffffff;
+  --color-muted: #94a3b8;
+  --color-muted-foreground: #64748b;
+  --color-card: #121222;
+  --color-card-foreground: #f8fafc;
+  --color-border: #1e1e3a;
+  --color-input: #1e1e3a;
+  --color-ring: #6366f1;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+
+  /* Fonts */
+  --font-heading: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-body: var(--font-plus-jakarta), var(--font-battambang), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  /* Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+
+  /* Button Styles */
+  --button-border-radius: 0.5rem;
+  --button-font-weight: 600;
+  --button-padding-sm: 0.5rem 1rem;
+  --button-padding-md: 0.625rem 1.25rem;
+  --button-padding-lg: 0.75rem 1.5rem;
+  --button-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --button-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --button-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --button-animation-hover: transform translateY(-2px);
+  --button-animation-active: transform translateY(0);
+
+  /* UI Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* Spacing */
+  --spacing-tight: 0.5rem;
+  --spacing-normal: 1rem;
+  --spacing-relaxed: 1.5rem;
+  --spacing-wide: 2rem;
+
+  /* Theme Transition */
+  --theme-transition: all 0.3s ease;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+body {
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 85% 100%, rgba(245, 158, 11, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.04) 0%, transparent 60%);
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* Glassmorphism Grain */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.35);
+  color: #fff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+@layer components {
+  /* Theme-aware button styles */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl px-6 py-3 font-bold text-white transition-all duration-300 active:scale-[0.98];
+    background-color: var(--color-primary);
+    box-shadow: var(--button-shadow-md);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--button-shadow-lg);
+  }
+
+  .btn-secondary {
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl px-6 py-3 font-semibold transition-all duration-300;
+    background-color: var(--color-secondary);
+    color: #ffffff;
+    box-shadow: var(--button-shadow-sm);
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--button-shadow-md);
+  }
+
+  .btn-accent {
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl px-6 py-3 font-bold transition-all duration-300;
+    background-color: var(--color-accent);
+    color: var(--color-accent-foreground);
+    box-shadow: var(--button-shadow-md);
+  }
+
+  .btn-accent:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--button-shadow-lg);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border px-6 py-3 font-semibold backdrop-blur-md transition-all duration-300;
+    background-color: var(--color-card);
+    border-color: var(--color-border);
+    color: var(--color-foreground);
+  }
+
+  .btn-ghost:hover {
+    transform: translateY(-0.5px);
+    border-color: var(--color-primary);
+    background-color: var(--color-card);
+  }
+
+  /* Theme-aware card styles */
+  .card {
+    @apply relative rounded-2xl backdrop-blur-xl transition-all duration-300;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    color: var(--color-card-foreground);
+  }
+
+  .card-hover {
+    @apply card;
+  }
+
+  .card-hover:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-2xl);
+    transform: translateY(-4px);
+  }
+
+  /* Theme-aware input styles */
+  .input {
+    @apply w-full rounded-xl px-4 py-3 transition-all duration-200 focus:outline-none focus:ring-2;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-input);
+    color: var(--color-foreground);
+  }
+
+  .input:focus {
+    border-color: var(--color-primary);
+    ring-color: var(--color-ring);
+  }
+
+  .input::placeholder {
+    color: var(--color-muted-foreground);
+  }
+
+  .label {
+    @apply block text-xs font-bold uppercase tracking-wider;
+    color: var(--color-muted-foreground);
+  }
+
+  /* Theme-aware badge styles */
+  .badge-hot {
+    @apply rounded-full px-2.5 py-0.5 text-[10px] font-black uppercase tracking-widest text-white shadow-lg;
+    background: linear-gradient(to right, var(--color-error), #dc2626);
+    box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.3);
+  }
+
+  .badge-best {
+    @apply rounded-full px-2.5 py-0.5 text-[10px] font-black uppercase tracking-widest text-black shadow-lg;
+    background: linear-gradient(to right, var(--color-warning), var(--color-accent));
+    box-shadow: 0 4px 6px -1px rgba(245, 158, 11, 0.3);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(to right, var(--color-primary), var(--color-accent), var(--color-primary));
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+  }
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+
+.animate-shimmer {
+  animation: shimmer 3s linear infinite;
+}
+
+/* Royal Grid Background */
+.royal-grid {
+  background-image: 
+    linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse at center, #000 50%, transparent 90%);
+}
+
+.gamer-grid {
+  background-image: 
+    linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  perspective: 1000px;
+}
+
+.aurora-bg {
+  @apply bg-aurora bg-fixed;
+}
+
+.glass-morphism {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+}
+
+.tilt-card {
+  @apply transition-all duration-500 ease-out;
+}
+.tilt-card:hover {
+  transform: perspective(1000px) rotateX(4deg) rotateY(-4deg) scale(1.02);
+}
+
+.animated-border {
+  @apply relative rounded-2xl overflow-hidden;
+}
+.animated-border::before {
+  content: '';
+  @apply absolute -inset-[2px] bg-gradient-to-r from-royal-primary via-royal-accent to-royal-primary opacity-0 transition-opacity duration-500;
+}
+.animated-border:hover::before {
+  @apply opacity-100;
+  animation: border-rotate 3s linear infinite;
+}
+
+@keyframes border-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.command-input-glow {
+  @apply shadow-[0_0_50px_-12px_rgba(99,102,241,0.5)];
+}
+
+/* Font utility classes */
+.font-space-grotesk {
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+}
+
+.font-jetbrains-mono {
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+.font-battambang {
+  font-family: var(--font-battambang), system-ui, sans-serif;
+}
+
+/* Khmer currency symbol support */
+.khmer-currency {
+  font-family: var(--font-battambang), 'Battambang', 'Khmer OS', system-ui, sans-serif;
+  font-feature-settings: 'kern' 1;
+  text-rendering: optimizeLegibility;
+}
+

@@ -1,0 +1,21 @@
+{
+  "name": "Ty Khai TopUp",
+  "short_name": "Ty Khai",
+  "description": "Fast & Secure Game Top-Up in Cambodia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#040408",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clear Cookies - Ty Khai TopUp</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    button {
+      background: #6366f1;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    button:hover {
+      background: #4f46e5;
+    }
+    .success {
+      color: #10b981;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧹 Clear Session Cookies</h1>
+  <p>This will clear all cookies for this site to fix JWT errors.</p>
+  
+  <button onclick="clearCookies()">Clear Cookies & Reload</button>
+  <button onclick="window.location.href='/admin/settings'">Go to Theme Settings</button>
+  
+  <div id="message" class="success"></div>
+  
+  <script>
+    function clearCookies() {
+      // Clear all cookies
+      document.cookie.split(";").forEach(function(c) { 
+        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+      });
+      
+      // Clear localStorage
+      localStorage.clear();
+      sessionStorage.clear();
+      
+      document.getElementById('message').textContent = '✅ Cookies cleared! Redirecting...';
+      
+      // Reload after 1 second
+      setTimeout(() => {
+        window.location.href = '/admin/settings';
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

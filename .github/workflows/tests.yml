@@ -1,0 +1,135 @@
+name: Automated Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Run Test Suite
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test123
+          POSTGRES_DB: tykhai_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      
+      redis:
+        image: redis:7
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: npm run postinstall
+
+      - name: Run database migrations
+        run: npm run db:push
+        env:
+          DATABASE_URL: postgresql://test:test123@localhost:5432/tykhai_test
+
+      - name: Build application
+        run: npm run build
+
+      - name: Start application
+        run: npm run start &
+        env:
+          DATABASE_URL: postgresql://test:test123@localhost:5432/tykhai_test
+          REDIS_URL: redis://localhost:6379
+          PAYMENT_SIMULATION_MODE: true
+          NODE_ENV: test
+          NEXTAUTH_SECRET: test-secret-key-for-ci-testing
+          NEXTAUTH_URL: http://localhost:3000
+
+      - name: Wait for application to be ready
+        run: |
+          echo "Waiting for application to start..."
+          sleep 10
+          curl -f http://localhost:3000/api/games || exit 1
+
+      - name: Run all tests
+        run: npm run test:all
+        env:
+          TEST_BASE_URL: http://localhost:3000
+          TEST_ADMIN_EMAIL: admin@tykhai.com
+          TEST_ADMIN_PASSWORD: admin123
+          PAYMENT_SIMULATION_MODE: true
+          DATABASE_URL: postgresql://test:test123@localhost:5432/tykhai_test
+          REDIS_URL: redis://localhost:6379
+
+      - name: Upload test reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-reports
+          path: tests/reports/
+          retention-days: 30
+
+      - name: Publish test summary
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-summary
+          path: tests/reports/test-summary.json
+          retention-days: 7
+
+  test-windows:
+    name: Run Tests (Windows)
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: npm run postinstall
+
+      - name: Build application
+        run: npm run build
+        env:
+          SKIP_ENV_VALIDATION: true
+
+      - name: Run API tests only (Windows)
+        run: npm run test:api
+        env:
+          TEST_BASE_URL: http://localhost:3000
+          PAYMENT_SIMULATION_MODE: true
+          SKIP_ENV_VALIDATION: true

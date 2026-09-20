@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Production
+*.tsbuildinfo
+next-env.d.ts
+
+# Misc
+.DS_Store
+*.pem
+.vscode/
+.idea/
+
+# ===== SECURITY: Env files (NEVER commit) =====
+.env
+.env.*
+!.env.example
+*.env
+.env*
+!.env.example
+env-var-*
+
+# Secrets and config
+vercel-env*.json
+.vercel-env*.json
+setting.json
+secret*.json
+credentials*.json
+
+# Vercel
+.vercel/
+
+# Logs and reports
+logs/
+*.log
+tests/reports/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Prisma
+/prisma/*.db
+/prisma/*.db-journal
+
+# User-uploaded images (admin panel)
+/public/uploads/*
+!/public/uploads/.gitkeep
+
+# OS files
+Thumbs.db
+Desktop.ini
