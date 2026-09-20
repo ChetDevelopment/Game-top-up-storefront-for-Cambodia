@@ -48,7 +48,7 @@ export default function RefundPage() {
           <section>
             <h2 className="text-xl font-semibold text-royal-text mb-3">4. Dispute Process</h2>
             <p>
-              If you believe you are entitled to a refund, you must contact us via Telegram (**@Vichet_SAT**) within 24 hours of the transaction. Please provide your **Order Number** and a screenshot of your payment receipt.
+              If you believe you are entitled to a refund, you must contact us via Telegram within 24 hours of the transaction. Please provide your **Order Number** and a screenshot of your payment receipt.
             </p>
           </section>
 

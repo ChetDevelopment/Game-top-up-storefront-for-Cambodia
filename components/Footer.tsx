@@ -45,7 +45,7 @@ export default function Footer() {
             {
               heading: "Support",
               items: [
-                { label: "Telegram: @Vichet_SAT", href: "https://t.me/Vichet_SAT" },
+                { label: "Telegram Support", href: "#" },
                 { label: "24/7 Service", href: "#" },
               ],
             },

@@ -75,11 +75,11 @@ export default function FooterNew() {
             <div className="space-y-3 mb-6">
               <div className="flex items-center gap-3 text-sm text-[var(--nexus-text-secondary)]">
                 <Mail className="h-4 w-4 text-[var(--nexus-primary)]" />
-                support@nexustopup.com
+                support@example.com
               </div>
               <div className="flex items-center gap-3 text-sm text-[var(--nexus-text-secondary)]">
                 <Phone className="h-4 w-4 text-[var(--nexus-primary)]" />
-                +855 12 345 678
+                +855 XX XXX XXX
               </div>
               <div className="flex items-center gap-3 text-sm text-[var(--nexus-text-secondary)]">
                 <MapPin className="h-4 w-4 text-[var(--nexus-primary)]" />

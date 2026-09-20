@@ -339,7 +339,7 @@ export default function OrderPage() {
 
             {order.status === "FAILED" && (
               <div className="mx-5 sm:mx-6 mb-5 sm:mb-6 rounded-lg border border-red-500/40 bg-red-500/10 p-4 text-sm text-red-300">
-                Something went wrong. Please contact <strong>@Vichet_SAT</strong> on Telegram with your order number.              </div>
+                 Something went wrong. Please contact support on Telegram with your order number.              </div>
             )}
 
             {order.status === "DELIVERED" && (

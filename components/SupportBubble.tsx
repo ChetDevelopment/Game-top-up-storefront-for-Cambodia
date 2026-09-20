@@ -11,7 +11,7 @@ export default function SupportBubble() {
       {isOpen && (
         <div className="flex flex-col gap-2 pointer-events-auto animate-in slide-in-from-bottom-4 fade-in">
           <a 
-            href="https://t.me/Vichet_SAT" 
+            href="#" 
             target="_blank" 
             className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-[#0088cc] text-white shadow-xl hover:scale-105 transition-transform"
           >
@@ -19,7 +19,7 @@ export default function SupportBubble() {
             <span className="text-sm font-bold uppercase tracking-wider">Telegram</span>
           </a>
           <a 
-            href="https://wa.me/85512345678" // Example number
+            href="#" // Add your WhatsApp number
             target="_blank" 
             className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-[#25D366] text-white shadow-xl hover:scale-105 transition-transform"
           >

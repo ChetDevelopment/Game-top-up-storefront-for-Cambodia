@@ -415,7 +415,7 @@ model Settings {
   id                   Int       @id @default(1)
   siteName             String    @default("Ty Khai TopUp")
   exchangeRate         Float     @default(4100)
-  supportTelegram      String?   @default("@Vichet_SAT")
+  supportTelegram String? @default("@your_telegram")
   supportEmail         String?   @default("support@example.com")
   maintenanceMode      Boolean   @default(false)
   maintenanceMessage   String?

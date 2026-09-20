@@ -77,7 +77,7 @@ function renderPdf(order: {
       .font("Helvetica")
       .fontSize(9)
       .text("Instant game top-up · Cambodia", marginX, 76);
-    doc.fillColor("#94a3b8").fontSize(8).text("support: @Vichet_SAT on Telegram", marginX, 90);
+    doc.fillColor("#94a3b8").fontSize(8).text("support via Telegram", marginX, 90);
     // INVOICE title right
     doc
       .fillColor("#ffffff")
@@ -329,7 +329,7 @@ function renderPdf(order: {
       .fillColor(BRAND.primary)
       .font("Helvetica-Bold")
       .fontSize(9)
-      .text("Telegram: @Vichet_SAT", marginX, footerY + 78);
+      .text("Telegram Support", marginX, footerY + 78);
     doc
       .fillColor("#94a3b8")
       .font("Helvetica")
