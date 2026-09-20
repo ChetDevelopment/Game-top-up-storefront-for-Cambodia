@@ -40,7 +40,6 @@ const nextConfig = {
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "*.vercel.app" },
-      { protocol: "https", hostname: "*.tykhai.com" },
       { protocol: "https", hostname: "res.cloudinary.com" },
       { protocol: "https", hostname: "cdn.jsdelivr.net" },
     ],

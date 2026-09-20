@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
 
   const referralCode = user.id.slice(-6).toUpperCase();
   // Always use production URL for referral links (they are shared externally)
-  const baseUrl = "https://tykhai.vercel.app";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
   const referralLink = `${baseUrl}/register?ref=${referralCode}`;
 
   const referredUsers = await prisma.user.findMany({

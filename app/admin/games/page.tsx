@@ -412,7 +412,7 @@ function ImageField({
       </div>
       <input
         className="input font-mono text-xs"
-        placeholder="Paste image URL (e.g., https://cdn.tykhai.com/games/mlbb.jpg)"
+        placeholder="Paste image URL (e.g., https://example.com/image.jpg)"
         value={value}
         required={required}
         onChange={(e) => onChange(e.target.value)}
