@@ -1,5 +1,5 @@
 {
-  "name": "tykhai",
+  "name": "game-top-up-storefront",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -10,31 +10,7 @@
     "postinstall": "prisma generate",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
-    "db:studio": "prisma studio",
-    "test:bakong": "tsx scripts/test-bakong-connection.ts",
-    "test:qr": "tsx scripts/test-payment-qr.ts",
-    "test:qr:quick": "powershell -ExecutionPolicy Bypass -File scripts/test-qr-quick.ps1",
-    "test:quick": "tsx scripts/quick-payment-test.ts",
-    "test:providers": "tsx scripts/test-provider-connections.ts",
-    "test:providers:quick": "powershell -ExecutionPolicy Bypass -File scripts/test-provider-apis.ps1",
-    "verify:payment": "tsx scripts/verify-auto-payment.ts",
-    "check:pending": "tsx scripts/check-and-fix-pending.ts",
-    "diagnose:payment": "tsx scripts/diagnose-payment.ts",
-    "diagnose:verify": "tsx scripts/diagnose-payment-verification.ts",
-    "worker": "tsx scripts/run-workers.ts",
-    "worker:dev": "cross-env NODE_ENV=development tsx scripts/run-workers.ts",
-    "validate:payment": "tsx scripts/validate-payment-flow.ts",
-    "test:all": "tsx tests/run-all.ts",
-    "test:api": "tsx tests/run-all.ts API",
-    "test:api:orders": "tsx tests/api/orders.test.ts",
-    "test:api:payment": "tsx tests/api/payment.test.ts",
-    "test:api:admin": "tsx tests/api/admin.test.ts",
-    "test:e2e": "tsx tests/run-all.ts E2E",
-    "test:e2e:user": "tsx tests/e2e/user-flow.test.ts",
-    "test:e2e:payment": "tsx tests/e2e/payment-flow.test.ts",
-    "test:integration": "tsx tests/run-all.ts Integration",
-    "test:db": "tsx tests/integration/db-integrity.test.ts",
-    "test:report": "powershell -ExecutionPolicy Bypass -File tests/open-report.ps1"
+    "db:studio": "prisma studio"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

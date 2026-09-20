@@ -1,36 +1,70 @@
-# Game Top-Up Storefront for Cambodia
+<div align="center">
 
-A full-stack web application for selling game credits (Free Fire Diamonds, PUBG UC, etc.) via KHQR payments. Built with Next.js 16, PostgreSQL, and Prisma ORM.
+# 🎮 Game Top-Up Storefront for Cambodia
 
-## Features
+**A full-stack game top-up platform built with Next.js 16, featuring Bakong KHQR payments for the Cambodian market.**
 
-- **Multiple Payment Methods**: Bakong KHQR, ABA PayWay
-- **Game Providers**: GameDrop, G2Bulk integration
-- **Admin Panel**: Full management dashboard with orders, products, analytics
-- **User System**: Registration, login, Google OAuth, VIP ranks
-- **Real-time Features**: Live delivery feed, instant notifications
-- **Security**: CSRF protection, rate limiting, webhook verification, encryption
-- **Mobile-First**: Responsive design with PWA support
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)](https://typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-38bdf8?logo=tailwindcss)](https://tailwindcss.com)
+[![Prisma](https://img.shields.io/badge/Prisma-5-2D3748?logo=prisma)](https://prisma.io)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Tech Stack
+**[Live Demo](https://tykhai.vercel.app)** · [Report Bug](https://github.com/ChetDevelopment/Game-top-up-storefront-for-Cambodia/issues) · [Request Feature](https://github.com/ChetDevelopment/Game-top-up-storefront-for-Cambodia/issues)
 
-- **Frontend**: Next.js 16 (App Router), React 18, Tailwind CSS
-- **Backend**: Next.js API Routes, Prisma ORM
-- **Database**: PostgreSQL (SQLite for development)
-- **Auth**: NextAuth.js, JWT (jose), bcryptjs
-- **Payments**: Bakong KHQR, ABA PayWay
-- **Queue**: BullMQ, Redis (Upstash)
-- **Deployment**: Vercel
+</div>
 
-## Quick Start
+---
+
+## ✨ Features
+
+| Feature | Description |
+|---------|-------------|
+| 💳 **KHQR Payments** | Bakong KHQR & ABA PayWay integration for Cambodian banking apps |
+| 🎮 **Game Catalog** | Manage games, products, and pricing with admin panel |
+| 👥 **User System** | Registration, login, Google OAuth, VIP ranks & wallet |
+| 📊 **Admin Dashboard** | Orders, analytics, customers, banners, and settings management |
+| 🚀 **Auto Delivery** | GameDrop & G2Bulk API integration for instant game credit delivery |
+| 🔒 **Enterprise Security** | CSRF protection, rate limiting, webhook verification, encryption |
+| 📱 **Mobile-First** | Responsive design with PWA support for all devices |
+| 🔔 **Real-time** | Live delivery feed, Telegram notifications, instant updates |
+| 🎁 **Gamification** | Spin wheel, mystery box, daily missions, referral system |
+| 💰 **Wallet System** | Built-in wallet with top-up, transfer, and payment features |
+
+---
+
+## 🛠️ Tech Stack
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    FRONTEND                              │
+│  Next.js 16 · React 18 · Tailwind CSS · Lucide Icons   │
+├─────────────────────────────────────────────────────────┤
+│                    BACKEND                               │
+│  Next.js API Routes · Prisma ORM · Node.js 20+         │
+├─────────────────────────────────────────────────────────┤
+│                    DATABASE                              │
+│  PostgreSQL (Production) · SQLite (Development)         │
+├─────────────────────────────────────────────────────────┤
+│                    PAYMENTS                              │
+│  Bakong KHQR · ABA PayWay · HMAC-SHA256 Verification   │
+├─────────────────────────────────────────────────────────┤
+│                    DEPLOYMENT                            │
+│  Vercel · GitHub Actions · BullMQ · Redis (Upstash)     │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js >= 20
-- PostgreSQL database (or SQLite for development)
-- Redis (optional, for rate limiting)
+- **Node.js** >= 20.x
+- **PostgreSQL** database (or SQLite for development)
+- **Bakong Portal** account for payments ([Register here](https://api-bakong.nbc.gov.kh))
 
-### 1. Clone & Install
+### 1️⃣ Clone & Install
 
 ```bash
 git clone https://github.com/ChetDevelopment/Game-top-up-storefront-for-Cambodia.git
@@ -38,114 +72,173 @@ cd Game-top-up-storefront-for-Cambodia
 npm install
 ```
 
-### 2. Configure Environment
+### 2️⃣ Configure Environment
 
 ```bash
 cp .env.example .env
 ```
 
-Edit `.env` with your configuration. See [SETUP_GUIDE.md](./SETUP_GUIDE.md) for detailed instructions.
+Edit `.env` with your settings. **Required variables:**
 
-### 3. Setup Database
+```env
+DATABASE_URL="postgresql://user:password@localhost:5432/your_db"
+JWT_SECRET="your_32_char_secret_here"
+NEXTAUTH_SECRET="your_32_char_secret_here"
+ENCRYPTION_KEY="your_32_char_secret_here"
+BAKONG_TOKEN="your_bakong_jwt_token"
+BAKONG_ACCOUNT="your_email@domain.com"
+BAKONG_MERCHANT_NAME="Your Store Name"
+BAKONG_WEBHOOK_SECRET="your_webhook_secret"
+NEXT_PUBLIC_BASE_URL="http://localhost:3000"
+```
+
+### 3️⃣ Setup Database
 
 ```bash
-# Generate Prisma client
 npx prisma generate
-
-# Run migrations
 npx prisma migrate dev
-
-# Seed database (creates admin user)
 npx prisma db seed
 ```
 
-### 4. Start Development Server
+### 4️⃣ Start Development
 
 ```bash
 npm run dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000)
+Visit **http://localhost:3000** 🎉
 
-### Default Admin Credentials
+### 🔐 Default Admin Login
 
-After seeding, login to admin panel at `/admin/login`:
+| Field | Value |
+|-------|-------|
+| URL | `http://localhost:3000/admin/login` |
+| Email | `admin@example.com` |
+| Password | `ChangeMeNow123!` |
 
-- **Email**: admin@example.com
-- **Password**: ChangeMeNow123!
+> ⚠️ **Change these credentials immediately after first login!**
 
-**Important**: Change these credentials immediately after first login!
+---
 
-## Project Structure
+## 📁 Project Structure
 
 ```
-tykhai-topup/
-├── app/                    # Next.js App Router pages & API routes
-│   ├── admin/              # Admin panel
-│   ├── api/                # API routes
-│   ├── checkout/           # Checkout flow
-│   ├── games/              # Game catalog
+├── app/                          # Next.js App Router
+│   ├── admin/                    # Admin panel (25+ pages)
+│   │   ├── orders/               # Order management
+│   │   ├── products/             # Product catalog
+│   │   ├── settings/             # Site settings
+│   │   └── ...
+│   ├── api/                      # Backend API routes
+│   │   ├── payment/              # Payment webhooks
+│   │   ├── orders/               # Order processing
+│   │   ├── cron/                 # Scheduled jobs
+│   │   └── ...
+│   ├── checkout/                 # Checkout flow
+│   ├── games/                    # Game catalog
 │   └── ...
-├── components/             # React components
-├── lib/                    # Utility libraries & services
-├── prisma/                 # Database schema & migrations
-├── public/                 # Static assets
-└── tests/                  # Test files
+├── components/                   # React components
+├── lib/                          # Utility libraries
+│   ├── payment.ts                # Payment processing
+│   ├── auth.ts                   # Authentication
+│   ├── encryption.ts             # AES-256-GCM encryption
+│   └── ...
+├── prisma/                       # Database schema
+└── public/                       # Static assets
 ```
 
-## Configuration
+---
 
-### Required Environment Variables
+## 💳 Payment Integration
 
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `DATABASE_URL` | PostgreSQL connection string | `postgresql://user:pass@localhost:5432/db` |
-| `JWT_SECRET` | JWT signing secret (min 32 chars) | Random hex string |
-| `NEXTAUTH_SECRET` | NextAuth secret (min 32 chars) | Random hex string |
-| `ENCRYPTION_KEY` | AES-256-GCM key (min 32 chars) | Random hex string |
-| `BAKONG_TOKEN` | Bakong API JWT token | Get from Bakong portal |
-| `BAKONG_WEBHOOK_SECRET` | Bakong webhook HMAC secret | Random hex string |
+### Bakong KHQR (Primary)
 
-### Optional Integrations
+Accept payments from all Cambodian banking apps:
+- ABA Mobile
+- ACLEDA Pay
+- Wing
+- TrueMoney
+- Chip Mong Pay
+- Prince Bank
+- And all KHQR-enabled apps
 
-- **Google OAuth**: Set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`
-- **Redis**: Set `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`
-- **Telegram**: Set `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`
-- **ABA PayWay**: Set `ABA_MERCHANT_ID` and `ABA_API_KEY`
+### ABA PayWay (Optional)
 
-## Deployment
+Additional payment method for ABA bank customers.
+
+---
+
+## 🔧 Environment Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `DATABASE_URL` | ✅ | PostgreSQL connection string |
+| `JWT_SECRET` | ✅ | JWT signing secret (min 32 chars) |
+| `NEXTAUTH_SECRET` | ✅ | NextAuth secret (min 32 chars) |
+| `ENCRYPTION_KEY` | ✅ | AES-256-GCM encryption key |
+| `BAKONG_TOKEN` | ✅ | Bakong API JWT token |
+| `BAKONG_ACCOUNT` | ✅ | Bakong merchant account |
+| `BAKONG_WEBHOOK_SECRET` | ✅ | Webhook HMAC secret |
+| `NEXT_PUBLIC_BASE_URL` | ✅ | Your app URL |
+| `ABA_MERCHANT_ID` | ⬜ | ABA PayWay merchant ID |
+| `ABA_API_KEY` | ⬜ | ABA PayWay API key |
+| `GOOGLE_CLIENT_ID` | ⬜ | Google OAuth client ID |
+| `GOOGLE_CLIENT_SECRET` | ⬜ | Google OAuth client secret |
+| `TELEGRAM_BOT_TOKEN` | ⬜ | Telegram bot token |
+| `UPSTASH_REDIS_REST_URL` | ⬜ | Upstash Redis URL |
+
+Generate secrets with:
+```bash
+openssl rand -hex 32
+```
+
+---
+
+## 🚀 Deployment
 
 ### Vercel (Recommended)
 
 1. Push to GitHub
-2. Import project in Vercel
-3. Configure environment variables
-4. Deploy
+2. Import project in [Vercel](https://vercel.com)
+3. Add environment variables
+4. Deploy!
 
-See [SETUP_GUIDE.md](./SETUP_GUIDE.md) for detailed deployment instructions.
+```bash
+# Or use Vercel CLI
+npx vercel --prod
+```
 
 ### Other Platforms
 
-The app can be deployed to any Node.js hosting platform. See the deployment section in [SETUP_GUIDE.md](./SETUP_GUIDE.md).
+Works on any Node.js hosting:
+- Railway
+- DigitalOcean App Platform
+- AWS Amplify
+- Self-hosted with Docker
 
-## Documentation
+---
 
-- [SETUP_GUIDE.md](./SETUP_GUIDE.md) - Complete setup and deployment guide
-- [API Documentation](./app/api/) - API route definitions
+## 🔒 Security Features
 
-## Security
+- ✅ Environment variables for all secrets
+- ✅ HMAC-SHA256 webhook verification
+- ✅ CSRF protection on state-changing requests
+- ✅ Rate limiting on API endpoints
+- ✅ SQL injection prevention via Prisma
+- ✅ XSS protection via React
+- ✅ AES-256-GCM field encryption
+- ✅ IP allowlisting for webhooks
 
-- All secrets are stored in environment variables
-- Webhook signatures are verified using HMAC-SHA256
-- CSRF protection on all state-changing requests
-- Rate limiting on API endpoints
-- SQL injection prevention via Prisma
-- XSS protection via React
+---
 
-## License
+## 📄 License
 
-MIT
+MIT License - feel free to use for personal or commercial projects.
 
-## Contributing
+---
 
-Contributions are welcome! Please open an issue or submit a pull request.
+## 🙏 Support
+
+If you find this project helpful, please give it a ⭐ on GitHub!
+
+**[Live Demo](https://tykhai.vercel.app)** · [Report Bug](https://github.com/ChetDevelopment/Game-top-up-storefront-for-Cambodia/issues) · [Request Feature](https://github.com/ChetDevelopment/Game-top-up-storefront-for-Cambodia/issues)
