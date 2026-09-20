@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { checkBakongPayment, processDeliveryQueue } from "@/lib/payment";
-import { checkKHPayPayment } from "@/lib/khpay";
 import { markOrderAsPaid } from "@/lib/payment-state-machine";
 import crypto from "crypto";
 
@@ -59,7 +58,7 @@ export async function POST(
 
   // 3. Order is PENDING - check payment API based on payment method
   if (order.status === "PENDING") {
-    let md5Hash = (order.metadata as any)?.bakongMd5 || (order.metadata as any)?.khpayMd5;
+    let md5Hash = (order.metadata as any)?.bakongMd5;
     
     // Calculate MD5 from QR if not in metadata
     if (!md5Hash && order.qrString) {
@@ -70,23 +69,11 @@ export async function POST(
       console.log(`[Verify] Checking payment for order ${order.orderNumber}, MD5: ${md5Hash}`);
       
       try {
-        // Check which payment API to use based on what we have
-        // For now, check both Bakong and KHPay (will determine by response)
+        // Check Bakong API
         let paymentResult;
         
-        // Try Bakong first (existing behavior)
         console.log(`[Verify] Checking Bakong API...`);
         paymentResult = await checkBakongPayment(md5Hash, order.paymentRef || undefined);
-        
-        // If Bakong says not paid and we have KHPay configured, try KHPay
-        if (!paymentResult.paid && process.env.KHPAY_API_KEY) {
-          console.log(`[Verify] Bakong not paid, checking KHPay API...`);
-          const khpayResult = await checkKHPayPayment(md5Hash);
-          if (khpayResult.paid) {
-            paymentResult = khpayResult;
-            console.log(`[Verify] KHPay payment confirmed!`);
-          }
-        }
         
         console.log(`[Verify] Payment result:`, { paid: paymentResult.paid, status: paymentResult.status });
         

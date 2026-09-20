@@ -353,11 +353,11 @@ export default function CheckoutPage() {
                    <div className="flex items-center justify-between p-4 rounded-2xl bg-royal-card/50 border border-royal-border">
                      <div className="flex items-center gap-3">
                        <div className="h-2 w-2 rounded-full bg-royal-primary animate-ping" />
-                       <span className="text-[10px] font-black uppercase tracking-[0.2em] text-royal-primary">{order.paymentMethod === "KHPAY" ? "KHPay" : "KHQR"} Network Awaiting</span>
+                       <span className="text-[10px] font-black uppercase tracking-[0.2em] text-royal-primary">KHQR Network Awaiting</span>
                      </div>
                      <div className="flex items-center gap-2">
                         <Activity size={14} className="text-royal-muted" />
-                        <span className="text-[10px] font-bold text-royal-muted uppercase">{order.paymentMethod === "KHPAY" ? "KHPay" : "KHQR"} Network Live</span>
+                        <span className="text-[10px] font-bold text-royal-muted uppercase">KHQR Network Live</span>
                      </div>
                    </div>
 
@@ -412,7 +412,7 @@ export default function CheckoutPage() {
                           </div>
 
                      <div className="flex items-center justify-between gap-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">
-                        <span>Verified {order.paymentMethod === "KHPAY" ? "KHPay" : "KHQR"}</span>
+                        <span>Verified KHQR</span>
                         <span>{order.orderNumber}</span>
                       </div>
                         </div>

@@ -35,11 +35,6 @@ const ENV_VARS: EnvVar[] = [
   { key: "ABA_WEBHOOK_SECRET", required: false, minLength: 16, description: "ABA webhook HMAC secret" },
   { key: "ABA_IP_RANGES", required: false, description: "Comma-separated CIDR ranges for ABA webhooks" },
 
-  // KHPay
-  { key: "KHPAY_API_BASE", required: false, description: "KHPay API base URL" },
-  { key: "KHPAY_MERCHANT_ID", required: false, description: "KHPay merchant ID" },
-  { key: "KHPAY_API_KEY", required: false, description: "KHPay API key" },
-
   // Game providers
   { key: "GAMEDROP_TOKEN", required: false, description: "GameDrop API token" },
   { key: "G2BULK_TOKEN", required: false, description: "G2Bulk API token" },

@@ -14,7 +14,6 @@ import {
 } from "./payment-types";
 import { hashSha256, encryptField } from "./encryption";
 import { initiateABAPayment, checkABAPayment } from "./aba-payway";
-import { initiateKHPayPayment, checkKHPayPayment } from "./khpay";
 import {
   canDispatchNewJobs,
   canRetryJobs,
@@ -77,7 +76,6 @@ export async function initiatePayment(args: InitiatePaymentArgs): Promise<Paymen
   const handlers: Partial<Record<PaymentMethod, (args: InitiatePaymentArgs) => Promise<PaymentInitResult>>> = {
     BAKONG: initiateBakong,
     ABA: initiateABAPayment,
-    KHPAY: initiateKHPayPayment,
     WALLET: initiateWallet,
   };
 

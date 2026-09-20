@@ -185,8 +185,6 @@ export async function POST(req: NextRequest) {
           cancelUrl: `${publicUrl}/games/${game.slug}`,
           callbackUrl: data.paymentMethod === "ABA" 
             ? `${publicUrl}/api/payment/webhook/aba`
-            : data.paymentMethod === "KHPAY"
-            ? `${publicUrl}/api/payment/webhook/khpay`
             : `${publicUrl}/api/payment/webhook/bakong`,
           note: `Ty Khai TopUp · ${game.name} · ${product.name}`,
           customerEmail: data.customerEmail,

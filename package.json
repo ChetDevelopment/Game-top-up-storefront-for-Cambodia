@@ -28,7 +28,6 @@
     "test:api": "tsx tests/run-all.ts API",
     "test:api:orders": "tsx tests/api/orders.test.ts",
     "test:api:payment": "tsx tests/api/payment.test.ts",
-    "test:khpay": "tsx scripts/test-khpay.ts",
     "test:api:admin": "tsx tests/api/admin.test.ts",
     "test:e2e": "tsx tests/run-all.ts E2E",
     "test:e2e:user": "tsx tests/e2e/user-flow.test.ts",

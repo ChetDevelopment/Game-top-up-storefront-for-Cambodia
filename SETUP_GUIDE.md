@@ -224,16 +224,6 @@ BAKONG_WEBHOOK_SECRET="generate_with_openssl_rand_hex_32"
    - Set webhook URL in Bakong portal to: `https://your-domain.com/api/payment/webhook/bakong`
    - Copy the webhook secret to `BAKONG_WEBHOOK_SECRET`
 
-### KHPay (Optional)
-
-Additional payment provider for KHQR.
-
-```env
-KHPAY_BASE_URL="https://khpay.site/api/v1"
-KHPAY_API_KEY="your_khpay_api_key"
-KHPAY_WEBHOOK_SECRET="your_webhook_secret"
-```
-
 ### ABA PayWay (Optional)
 
 For ABA bank payments.

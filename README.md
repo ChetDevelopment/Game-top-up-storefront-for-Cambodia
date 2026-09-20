@@ -4,7 +4,7 @@ A full-stack web application for selling game credits (Free Fire Diamonds, PUBG 
 
 ## Features
 
-- **Multiple Payment Methods**: Bakong KHQR, KHPay, ABA PayWay
+- **Multiple Payment Methods**: Bakong KHQR, ABA PayWay
 - **Game Providers**: GameDrop, G2Bulk integration
 - **Admin Panel**: Full management dashboard with orders, products, analytics
 - **User System**: Registration, login, Google OAuth, VIP ranks
@@ -18,7 +18,7 @@ A full-stack web application for selling game credits (Free Fire Diamonds, PUBG 
 - **Backend**: Next.js API Routes, Prisma ORM
 - **Database**: PostgreSQL (SQLite for development)
 - **Auth**: NextAuth.js, JWT (jose), bcryptjs
-- **Payments**: Bakong KHQR, KHPay, ABA PayWay
+- **Payments**: Bakong KHQR, ABA PayWay
 - **Queue**: BullMQ, Redis (Upstash)
 - **Deployment**: Vercel
 
@@ -112,7 +112,6 @@ tykhai-topup/
 - **Redis**: Set `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`
 - **Telegram**: Set `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`
 - **ABA PayWay**: Set `ABA_MERCHANT_ID` and `ABA_API_KEY`
-- **KHPay**: Set `KHPAY_API_KEY`
 
 ## Deployment
 

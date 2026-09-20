@@ -7,7 +7,7 @@
 import { z } from "zod";
 
 // ===================== Payment Method & Currency =====================
-export type PaymentMethod = "BAKONG" | "ABA" | "KHPAY" | "WALLET"; // Bakong KHQR + ABA PayWay + KHPay + Wallet
+export type PaymentMethod = "BAKONG" | "ABA" | "WALLET"; // Bakong KHQR + ABA PayWay + Wallet
 export type PaymentCurrency = "USD" | "KHR";
 
 // ===================== Payment Status State Machine =====================
@@ -116,12 +116,6 @@ export const PAYMENT_PROVIDERS: Record<PaymentMethod, PaymentProviderConfig> = {
     currencies: ["USD", "KHR"],
     minAmount: 0.50,
   },
-  KHPAY: {
-    enabled: true,
-    displayName: "KHPay (KHQR)",
-    currencies: ["USD", "KHR"],
-    minAmount: 0.50,
-  },
   WALLET: {
     enabled: true,
     displayName: "Ty Khai Wallet",
@@ -138,7 +132,7 @@ export const CreateOrderSchema = z.object({
   serverId: z.string().optional(),
   customerEmail: z.string().email().optional(),
   customerPhone: z.string().optional(),
-  paymentMethod: z.enum(["WALLET", "BAKONG", "ABA", "KHPAY"]), // Bakong + Wallet + ABA + KHPay
+  paymentMethod: z.enum(["WALLET", "BAKONG", "ABA"]), // Bakong + Wallet + ABA
   currency: z.enum(["USD", "KHR"]).optional().default("USD"),
   promoCode: z.string().optional(),
   playerNickname: z.string().max(100).optional(),

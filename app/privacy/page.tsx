@@ -39,7 +39,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-xl font-semibold text-royal-text mb-3">3. Data Sharing</h2>
             <p>
-              We **do not sell** your personal information. We only share data with third-party payment processors (KHPay/KHQR) to verify your payments. These partners are obligated to protect your data under their own privacy policies.
+              We **do not sell** your personal information. We only share data with third-party payment processors (KHQR) to verify your payments. These partners are obligated to protect your data under their own privacy policies.
             </p>
           </section>
 

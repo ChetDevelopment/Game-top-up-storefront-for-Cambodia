@@ -49,7 +49,7 @@ export default function TopUpForm({ game, products }: { game: Game; products: Pr
   const [serverId, setServerId] = useState(
     ZONE_ID_SLUGS.has(game.slug) ? "" : (game.servers[0] ?? "")
   );
-  const [method, setMethod] = useState<"BAKONG" | "ABA" | "KHPAY" | "WALLET">("BAKONG");
+  const [method, setMethod] = useState<"BAKONG" | "ABA" | "WALLET">("BAKONG");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -577,32 +577,6 @@ export default function TopUpForm({ game, products }: { game: Game; products: Pr
                 )}
               </div>
             )}
-
-            {/* KHPay Payment Option - COMING SOON */}
-            <button
-              type="button"
-              disabled={true}
-              className={`group relative rounded-xl border-2 p-4 sm:p-5 text-left transition-all duration-300 w-full mb-4 opacity-60 cursor-not-allowed ${
-                !walletActive && method === "KHPAY"
-                  ? "border-royal-border bg-royal-card/50"
-                  : "border-royal-border bg-royal-card"
-              }`}
-            >
-              <div className="flex items-center gap-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-gray-400 to-gray-500 border border-gray-500/30 overflow-hidden shrink-0">
-                  <QrCode className="h-8 w-8 text-white/70" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-base text-gray-400">KHPay · KHQR Payment</span>
-                    <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-[10px] font-bold text-amber-400 whitespace-nowrap">COMING SOON</span>
-                  </div>
-                  <div className="text-xs text-gray-500 mt-0.5">This payment method will be available soon.</div>
-                </div>
-                <div className={`h-5 w-5 rounded-full border-2 flex items-center justify-center shrink-0 border-gray-500 bg-gray-500/20`}>
-                </div>
-              </div>
-            </button>
 
             <button
               type="button"

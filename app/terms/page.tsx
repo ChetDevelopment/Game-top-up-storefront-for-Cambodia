@@ -25,7 +25,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-xl font-semibold text-royal-text mb-3">2. Description of Service</h2>
             <p>
-              Ty Khai TopUp provides digital top-up services for various online games and platforms. We act as an intermediary, facilitating the purchase of in-game credits using local Cambodian payment methods (KHQR/KHPay).
+              Ty Khai TopUp provides digital top-up services for various online games and platforms. We act as an intermediary, facilitating the purchase of in-game credits using local Cambodian payment methods (KHQR).
             </p>
           </section>
 
@@ -43,7 +43,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-xl font-semibold text-royal-text mb-3">4. Payments</h2>
             <p>
-              All payments are processed through KHPay (KHQR). By initiating a transaction, you authorize the payment through your respective banking application. Prices are subject to change without prior notice based on market rates and publisher pricing.
+              All payments are processed through KHQR. By initiating a transaction, you authorize the payment through your respective banking application. Prices are subject to change without prior notice based on market rates and publisher pricing.
             </p>
           </section>
 
